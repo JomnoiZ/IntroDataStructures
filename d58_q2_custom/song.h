@@ -27,6 +27,9 @@ class Song {
 //  you have to write something below this line   
 class Compare1 {
   public:
+    Compare1() {}
+    Compare1(int x) {}
+
     bool operator()(const Song &a, const Song &b) const {
       return make_pair(a.artist, a.title) > make_pair(b.artist, b.title);
     }
@@ -40,7 +43,7 @@ class Compare2 {
 };
 
 //  you *MIGHT* have to change the declaration of pq1 and pq2
-CP::priority_queue<Song, Compare1> pq1;
+CP::priority_queue<Song, Compare1> pq1(Compare1);
 CP::priority_queue<Song, Compare2> pq2;
 
 #endif
