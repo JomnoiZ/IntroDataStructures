@@ -5,15 +5,13 @@ using namespace std;
 
 void insert_into_sv(map<int,int> &v, int pos, int value) {
     //your code here
-    auto it = v.lower_bound(pos), it2 = it;
-    vector <pair <int, int>> tmp;
-    while (it2 != v.end()) {
-        tmp.emplace_back(it2->first + 1, it2->second);
-        it2++;
+    auto it = v.rbegin();
+    while (it != v.rend() and it->first >= pos) {
+        v[it->first + 1] = it->second;
+        it++;
+        v.erase(next(it).base());
     }
-    v.erase(it, v.end());
     v[pos] = value;
-    v.insert(tmp.begin(), tmp.end());
 }
 
 int main() {
